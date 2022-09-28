@@ -5,7 +5,7 @@ permalink: /posts/{{ title | slugify }}/index.html
 
 {% extends "./Base.njk" %}
 
-{% set meta_og_title = title + " - " + site.name %}
+{% set meta_og_title = title %}
 {% set meta_og_description = page.excerpt %}
 {% set meta_og_image = cover %}
 {% set meta_og_type = "article" %}
