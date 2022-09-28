@@ -1,6 +1,8 @@
 # Eleventy Material
 Eleventy Material is a very opiniated blogging theme for Eleventy, built with the [MDUI framework](https://github.com/zdhxiong/mdui) and written by a newbie that have no idea how to write a good code 👌😳👌.
 
+# [Live Demo](https://eleventy-material.netlify.app/)
+
 ## Mobile score 😮
 ![LightHouse Mobile](./screenshots/LightHouse-Mobile.png)
 
@@ -40,7 +42,9 @@ You might also want to change something in the `.manifest` file.
 To write an article/post, put them inside the /posts/ folder.
 
 # TO DO (or not to do... no promise ✌️😁✌️)
-- Add search functionality 🫢
+- Add search functionality 🫢 (help needed)
+- Add Disqus
 - Add workbox for generating the service-worker (if it's ever needed...)
 - Add a bit of an animation .onload()?
+- Add Web Share API to post sharing button
 - Docs on how to actually use the theme and how to write a post
