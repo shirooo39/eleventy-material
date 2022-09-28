@@ -44,8 +44,7 @@ module.exports = function(eleventyConfig) {
         "source/assets/js": "assets/js",
         "source/assets/fonts": "assets/fonts",
         "source/assets/icons": "assets/icons",
-        "source/manifest.webmanifest" : "manifest.webmanifest",
-        "source/robots.txt" : "robots.txt"
+        "source/manifest.webmanifest" : "manifest.webmanifest"
     });
 
     eleventyConfig.addCollection("posts", function(collectionApi) {
