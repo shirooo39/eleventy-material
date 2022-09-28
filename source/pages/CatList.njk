@@ -1,0 +1,17 @@
+---
+title: Categories
+permalink: /categories/index.html
+---
+
+{% extends "../layouts/Base.njk" %}
+
+{% set meta_og_url = site.url %}
+{% set meta_og_type = "website" %}
+{% set meta_og_title = site.name %}
+{% set meta_og_description = site.description %}
+
+{% block content %}
+    {% for item in collections.catList %}
+        {% include "CatTagList.njk" %}
+    {% endfor %}
+{% endblock %}

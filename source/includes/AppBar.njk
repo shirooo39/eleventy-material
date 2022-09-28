@@ -1,0 +1,42 @@
+<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
+    <div class="mdui-toolbar mdui-color-theme">
+        <button class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{ target: '#appbar-drawer', overlay: true, swipe: true }">
+            <i class="mdui-icon material-icons">menu</i>
+        </button>
+        <div class="mdui-typo-headline">{{ title }}</div>
+        <div class="mdui-toolbar-spacer"></div>
+        <button disabled class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
+            <i class="mdui-icon material-icons">search</i>
+        </button>
+    </div>
+</div>
+<div id="appbar-drawer" class="mdui-drawer mdui-drawer-full-height mdui-drawer-close">
+    <div class="drawer-top-box">
+        {% image theme.drawer_cover, 1200, "avif", "Drawer Cover Image", "drawer-cover-image" %}
+        <button id="dark-mode-toggle" class="mdui-btn mdui-btn-icon mdui-valign mdui-text-center mdui-text-color-white mdui-ripple mdui-ripple-white" mdui-drawer-close="{ target: '#appbar-drawer' }" mdui-tooltip="{ content: 'Toggle light/dark mode' }">
+            <i class="mdui-icon material-icons">brightness_medium</i>
+        </button>
+        <div class="drawer-author">
+            {% image author.avatar, 1000, "avif", "Author Avatar", "mdui-shadow-1 drawer-author-avatar" %}
+            <div class="mdui-typo-title-opacity mdui-text-color-white">
+                {{ author.name }}
+            </div>
+        </div>
+    </div>
+    <div class="mdui-list">
+        {%- for navint in navigation.internal %}
+            <div class="mdui-list-item mdui-ripple {% if navint.url == page.url -%} mdui-list-item-active {%- endif %}" {% if navint.url != page.url -%} onclick="window.location.href=('{{ navint.url }}');" {%- endif %} mdui-drawer-close="{ target: '#appbar-drawer' }">
+                <i class="mdui-icon mdui-list-item-icon material-icons">{{ navint.icon }}</i>
+                <div class="mdui-list-item-content mdui-text-color-theme-secondary">{{ navint.label }}</div>
+            </div>
+        {%- endfor %}
+        <div class="mdui-divider"></div>
+        {%- for navext in navigation.external %}
+            <div class="mdui-list-item mdui-ripple" onclick="window.open('{{ navext.url }}');" mdui-drawer-close="{ target: '#appbar-drawer' }">
+                <div class="mdui-list-item-content mdui-text-color-theme-secondary" style="margin-left: 38px;">
+                    {{ navext.label }}
+                </div>
+            </div>
+        {%- endfor %}
+    </div>
+</div>

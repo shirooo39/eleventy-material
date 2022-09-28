@@ -1,0 +1,67 @@
+---
+title: Contact
+permalink: /contact/
+---
+
+{% extends "../layouts/base.njk" %}
+
+{% set meta_og_url = site.url %}
+{% set meta_og_type = "website" %}
+{% set meta_og_title = site.name %}
+{% set meta_og_description = site.description %}
+
+{% block content %}
+    <div class="mdui-row">
+        <div class="mdui-col-xs-12 mdui-col-md-8 mdui-col-offset-md-2">
+            <div class="mdui-typo-title">
+                Hello there! If you ever need any help or just want to get in touch with me, feel free to use the form below.
+            </div>
+            <div class="mdui-m-t-4">
+                <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <i class="mdui-icon material-icons">account_circle</i>
+                        <input class="mdui-textfield-input" name="name" placeholder="Name" type="text" required/>
+                        <div class="mdui-textfield-error">This field is required!</div>
+                    </div>
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <i class="mdui-icon material-icons">email</i>
+                        <input class="mdui-textfield-input" name="email" placeholder="Email" type="email" required/>
+                        <div class="mdui-textfield-error">This field is required!</div>
+                    </div>
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <i class="mdui-icon material-icons">textsms</i>
+                        <textarea class="mdui-textfield-input" name="message" placeholder="Message" required></textarea>
+                        <div class="mdui-textfield-error">This field is required!</div>
+                    </div>
+                    <div class="mdui-clearfix">
+                        <div class="mdui-float-right mdui-m-t-1 mdui-m-b-2" data-netlify-recaptcha="true"></div>
+                    </div>
+                    <div class="mdui-clearfix">
+                        <button class="mdui-btn mdui-btn-rounded mdui-float-right mdui-color-theme-accent mdui-ripple" type="submit">
+                            <i class="mdui-icon mdui-icon-right material-icons">send</i>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="mdui-m-t-5">
+                <div class="mdui-typo-title">
+                    Or, you can find me on one of these platforms below:
+                </div>
+                <div class="mdui-m-t-3">
+                    {% for item in author.contact %}
+                        <div class="mdui-col-xs-12 mdui-col-sm-4 mdui-m-b-3">
+                            <div class="mdui-card mdui-hoverable mdui-ripple" onclick="window.open('{{ item.url }}');" style="border-radius: 40px !important;">
+                                <div class="mdui-card-content">
+                                    <div class="mdui-typo-title-opacity mdui-text-center mdui-text-uppercase">
+                                        {{ item.label }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

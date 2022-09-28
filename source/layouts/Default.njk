@@ -1,0 +1,15 @@
+---
+title: title
+permalink: permalink
+---
+
+{% extends "./Base.njk" %}
+
+{% set meta_og_url = site.url %}
+{% set meta_og_type = "website" %}
+{% set meta_og_title = site.name %}
+{% set meta_og_description = site.description %}
+
+{% block content %}
+    {{ content | safe }}
+{% endblock %}

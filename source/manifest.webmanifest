@@ -1,0 +1,25 @@
+{
+    "name": "11ty Material",
+    "short_name": "11ty Material",
+    "description": "Material Design theme for 11ty",
+    "lang": "en",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "dir": "ltr",
+    "background_color": "#212121",
+    "theme_color": "#212121",
+    "icons": [
+        {
+            "src": "/assets/icons/favicons/android-chrome-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/assets/icons/favicons/android-chrome-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

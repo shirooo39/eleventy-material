@@ -1,0 +1,35 @@
+{
+    "internal": [
+        {
+            "label": "Home",
+            "url": "/",
+            "icon": "home"
+        },
+        {
+            "label": "Categories",
+            "url": "/categories/",
+            "icon": "book"
+        },
+        {
+            "label": "Tags",
+            "url": "/tags/",
+            "icon": "local_offer"
+        },
+        {
+            "label": "Contact",
+            "url": "/contact/",
+            "icon": "email"
+        },
+        {
+            "label": "About",
+            "url": "/about/",
+            "icon": "account_circle"
+        }
+    ],
+    "external": [
+        {
+            "label": "Source Code",
+            "url": "https://github.com/shirooo39/11ty-material"
+        }
+    ]
+}

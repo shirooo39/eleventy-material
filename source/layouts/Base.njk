@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ site.locale }}">
+    <head>
+        <title>{{ title }} - {{ site.name }}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="{{ author.name }}">
+        <meta name="description" content="{{ site.description }}">
+        <meta name="keywords" content="{{ site.keywords }}">
+        <meta property="og:title" content="{{ meta_og_title }}" />
+        <meta property="og:description" content="{{ meta_og_description }}" />
+        {% if meta_og_image -%} <meta property="og:image" content="{{ meta_og_image }}" /> {%- endif %}
+        <meta property="og:locale" content="{{ site.locale }}" />
+        <meta property="og:type" content="{{ meta_og_type }}" />
+        <meta property="og:url" content="{{ meta_og_url }}" />
+        <meta name="msapplication-TileColor" content="#da532c">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicons/favicon-16x16.png">
+        <link rel="mask-icon" href="/assets/icons/favicons/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="canonical" href="{{ site.url }}">
+        <link rel="manifest" href="/manifest.webmanifest">
+        <link rel="stylesheet" href="/assets/css/mdui.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+    <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-dark">
+        <header>
+            {% include "AppBar.njk" %}
+        </header>
+        <main>
+            <div class="mdui-container wrapper">
+                {% block content %}
+                    {# All of the main content goes into this section #}
+                {% endblock %}
+            </div>
+        </main>
+        {% include "SCrollTopFAB.njk" %}
+        <script src="/assets/js/mdui.min.js"></script>
+        <script src="/assets/js/script.js"></script>
+    </body>
+</html>

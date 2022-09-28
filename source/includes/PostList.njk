@@ -1,0 +1,39 @@
+<div class="mdui-row">
+    {% for post in PostCollection or collections.catPost[cat] or collections.tagPost[tag] %}
+        <div class="mdui-col-md-8 mdui-col-offset-md-2">
+            <div class="mdui-card {% if theme.card_hoverable -%} mdui-hoverable {%- else -%} mdui-shadow-4 {%- endif %} mdui-m-b-4">
+                <div class="mdui-card-media post--cover-placeholder">
+                    {% image post.data.cover, 1500, "avif", "Article Cover", "post--cover-content" %}
+                    <div class="mdui-card-media-covered">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">{{ post.data.title }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdui-card-content mdui-typo mdui-typo-headline">
+                    {{ post.data.page.excerpt }}
+                </div>
+                <div class="mdui-divider"></div>
+                <div class="mdui-card-actions">
+                    <div class="mdui-clearfix">
+                        <div class="mdui-float-left">
+                            <div class="mdui-chip">
+                                <span class="mdui-chip-icon mdui-color-theme-accent">
+                                    <i class="mdui-icon material-icons">today</i>
+                                </span>
+                                <span class="mdui-chip-title">{{ post.data.date | readableDate }}</span>
+                            </div>
+                        </div>
+                        <div class="mdui-float-right">
+                            <div style="margin-right: -10px;">
+                                <button class="mdui-btn mdui-btn-rounded mdui-color-theme-accent mdui-ripple" onclick="window.location.href=('{{ post.url }}');" aria-label="Click here to read more about: {{ post.data.title }}">
+                                    READ MORE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

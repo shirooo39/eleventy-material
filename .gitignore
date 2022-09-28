@@ -1,0 +1,4 @@
+.backup/
+.cache/
+node_modules/
+site/

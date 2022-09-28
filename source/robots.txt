@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://draft--11ty-material.netlify.app/sitemap.xml

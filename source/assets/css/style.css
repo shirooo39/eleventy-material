@@ -1,0 +1,186 @@
+p {
+    font-size: 16px !important;
+}
+
+/* -------------------------------------------------- */
+/* MDUI styles override                               */
+/* -------------------------------------------------- */
+.mdui-appbar, .mdui-toolbar {
+    min-height: 64px !important;
+    max-height: 64px !important;
+    height: 64px !important;
+}
+
+.mdui-appbar-dense, .mdui-toolbar-dense {
+    min-height: 48px !important;
+    max-height: 48px !important;
+    height: 48px !important;
+}
+
+.mdui-drawer {
+    background-color: #FFFFFF !important;
+}
+
+.mdui-theme-layout-dark .mdui-drawer {
+    background-color: #424242 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mdui-theme-layout-auto .mdui-drawer {
+        background-color: #424242 !important;
+    }
+}
+
+.mdui-drawer {
+    min-width: 280px !important;
+    max-width: 280px !important;
+    width: 280px !important;
+}
+
+.mdui-drawer-close {
+    transform: translateX(-280px) !important;
+}
+
+.mdui-card {
+    border-radius: 4px !important;
+}
+
+.mdui-card-media-covered {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.mdui-menu {
+    border-radius: 4px !important;
+}
+
+/* .mdui-btn {
+    border-radius: 4px !important;
+} */
+
+.mdui-tooltip {
+    border-radius: 40px !important;
+}
+
+.mdui-dialog {
+    border-radius: 4px !important;
+}
+
+/* .mdui-theme-layout-dark .mdui-dialog {
+    color: #fff;
+    background-color: #1e1e1e;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mdui-theme-layout-auto .mdui-dialog {
+        background-color: #1e1e1e;
+    }
+} */
+
+.mdui-btn-rounded { 
+    border-radius: 4px !important;
+}
+
+.mdui-drawer .mdui-list-item {
+    border-radius: 0 50px 50px 0;
+}
+
+.mdui-drawer .mdui-list-item-icon {
+    color: #9aa0a6 !important;
+    margin-right: -18px;
+}
+/* -------------------------------------------------- */
+
+.wrapper {
+    height: 100%;
+    padding-top: calc(64px + 24px);
+    padding-bottom: 24px;
+}
+
+.wrapper-dense {
+    height: 100%;
+    padding-top: 48px;
+}
+
+/* -------------------------------------------------- */
+/* AppBar Drawer Section                              */
+/* -------------------------------------------------- */
+#dark-mode-toggle {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 4;
+}
+
+.drawer-top-box {
+    background-color: #cfd4da;
+    width: 280px;
+    height: 200px;
+    position: relative;
+}
+
+.drawer-cover-image {
+    width: auto;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.drawer-author {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+}
+
+.drawer-author-avatar {
+    background-color: #cfd4da;
+    margin-bottom: 5px;
+    width: 75px;
+    height: 75px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border-radius: 50%;
+}
+/* -------------------------------------------------- */
+
+.post--cover-placeholder {
+    background-color: #cfd4da;
+    display: block;
+    height: 265px;
+    border-radius: 4px;
+}
+
+.post--cover-content {
+    width: 100%;
+    height: 265px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 4px;
+}
+
+.post--author-avatar-placeholder {
+    background-color: #cfd4da;
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%
+}
+
+.post--share-item {
+    width: 90px;
+    height: 110px;
+    outline: none;
+    border: transparent solid 2px;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+}
+
+.post--share-item:hover {
+    border: #3DAEE9 solid 2px;
+}

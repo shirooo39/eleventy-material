@@ -1,0 +1,15 @@
+---
+title: Page Not Found
+permalink: 404.html
+---
+
+{% extends "./layouts/Base.njk" %}
+
+{% set meta_og_url = site.url %}
+{% set meta_og_type = "website" %}
+{% set meta_og_title = site.name %}
+{% set meta_og_description = site.description %}
+
+{% block content %}
+    <h1>404 Page Not Found</h1>
+{% endblock %}

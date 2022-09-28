@@ -1,0 +1,160 @@
+---
+title: title
+permalink: /posts/{{ title | slugify }}/index.html
+---
+
+{% extends "./Base.njk" %}
+
+{% set meta_og_title = title + " - " + site.name %}
+{% set meta_og_description = page.excerpt %}
+{% set meta_og_image = cover %}
+{% set meta_og_type = "article" %}
+{% set meta_og_url = site.url + page.url %}
+
+{% block content %}
+    <div class="mdui-row">
+        <div class="mdui-col-md-8 mdui-col-offset-md-2">
+            <div class="mdui-card mdui-shadow-4">
+                <div class="mdui-card-media post--cover-placeholder">
+                    {% image cover, 1500, "avif", "Article Cover", "post--cover-content" %}
+                    <div class="mdui-card-media-covered">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">{{ title }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdui-card-header">
+                    <div class="mdui-clearfix">
+                        <div class="mdui-float-left">
+                            <div class="post--author-avatar-placeholder">
+                                {% image author.avatar, 1000, "avif", "Author Avatar", "mdui-card-header-avatar" %}
+                            </div>
+                            <div class="mdui-card-header-title">{{ author.name }}</div>
+                            <div class="mdui-card-header-subtitle">{{ page.date | readableDate }}</div>
+                        </div>
+                        <div class="mdui-float-right">
+                            <button class="mdui-btn mdui-btn-icon mdui-ripple" mdui-dialog="{ target: '#dialog-tags'}" mdui-tooltip="{ content: 'Tags' }">
+                                <i class="mdui-icon material-icons">local_offer</i>
+                            </button>
+                            <button class="mdui-btn mdui-btn-icon mdui-ripple" mdui-dialog="{ target: '#dialog-qrcode'}" mdui-tooltip="{ content: 'QR Code' }">
+                                <i class="mdui-icon material-icons">devices</i>
+                            </button>
+                            <button class="mdui-btn mdui-btn-icon mdui-ripple" mdui-dialog="{ target: '#dialog-share'}" mdui-tooltip="{ content: 'Share' }">
+                                <i class="mdui-icon material-icons">share</i>
+                            </button>
+                            <div id="dialog-tags" class="mdui-dialog">
+                                <div class="mdui-dialog-title">Tags</div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-content">
+                                    {% set PostTags = tags %}
+                                    {% if PostTags %}
+                                        {% for tag in PostTags %}
+                                            <div class="mdui-chip mdui-m-x-1 mdui-m-y-1 mdui-ripple" onclick="window.location.href=('/tags/{{ tag | slugify }}/');" style="cursor: pointer;">
+                                                <span class="mdui-chip-title">{{ tag }}</span>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="mdui-title">
+                                            This post does not have any tag.
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-actions">
+                                    <button class="mdui-btn mdui-btn-rounded mdui-p-x-3 mdui-text-color-theme-accent mdui-ripple" mdui-dialog-close>CLOSE</button>
+                                </div>
+                            </div>
+                            <div id="dialog-qrcode" class="mdui-dialog">
+                                <div class="mdui-dialog-title">QR Code</div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-content">
+                                    <img class="mdui-center" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl={{ site.url + page.url }}" alt="QR Code">
+                                </div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-actions">
+                                    <button class="mdui-btn mdui-btn-rounded mdui-p-x-3 mdui-text-color-theme-accent mdui-ripple" mdui-dialog-close>CLOSE</button>
+                                </div>
+                            </div>
+                            <div id="dialog-share" class="mdui-dialog">
+                                <div class="mdui-dialog-title">Share</div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-content">
+                                    <div class="mdui-valign">
+                                        <div class="mdui-center">
+                                            <button class="mdui-ripple post--share-item" onclick="window.open('https://www.facebook.com/sharer.php?u={{ site.url + page.url }}');">
+                                                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid meet" focusable="false" style="width: 50px; height: 50px;">
+                                                    <g>
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z" fill="#3B5998" fill-rule="nonzero"></path>
+                                                            <path d="M25.7305108 45h5.4583577V30.0073333h4.0947673l.8098295-4.6846666h-4.9045968V21.928c0-1.0943333.7076019-2.2433333 1.7188899-2.2433333h2.7874519V15h-3.4161354v.021c-5.3451414.194-6.4433395 3.2896667-6.5385744 6.5413333h-.0099897v3.7603334H23v4.6846666h2.7305108V45z" fill="#FFF"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <div class="mdui-typo mdui-text-color-theme-text mdui-m-t-1">Facebook</div>
+                                            </button>
+                                            <button class="mdui-ripple post--share-item" onclick="window.open('https://api.whatsapp.com/send/?text={{ title }} - {{ site.url + page.url }}');">
+                                                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid meet" focusable="false" style="width: 50px; height: 50px;">
+                                                    <g>
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <circle cx="30" cy="30" r="30" fill="#25D366"></circle>
+                                                            <path d="M39.7746 19.3513C37.0512 16.5467 33.42 15 29.5578 15C21.6022 15 15.1155 21.6629 15.1155 29.8725C15.1155 32.4901 15.7758 35.0567 17.0467 37.3003L15 45L22.6585 42.9263C24.7712 44.1161 27.148 44.728 29.5578 44.728C37.5134 44.728 44 38.0652 44 29.8555C44 25.8952 42.498 22.1558 39.7746 19.3513ZM29.5578 42.2295C27.3956 42.2295 25.2829 41.6346 23.4508 40.5127L23.0051 40.2408L18.4661 41.4646L19.671 36.9093L19.3904 36.4334C18.1855 34.4618 17.5583 32.1841 17.5583 29.8555C17.5583 23.0397 22.9556 17.4986 29.5743 17.4986C32.7763 17.4986 35.7968 18.7904 38.0581 21.119C40.3193 23.4476 41.5737 26.5581 41.5737 29.8555C41.5572 36.6884 36.1764 42.2295 29.5578 42.2295ZM36.1434 32.966C35.7803 32.779 34.0142 31.8782 33.6841 31.7592C33.354 31.6402 33.1064 31.5722 32.8754 31.9462C32.6278 32.3201 31.9511 33.153 31.7365 33.4079C31.5219 33.6629 31.3238 33.6799 30.9607 33.4929C30.5976 33.306 29.4422 32.915 28.0558 31.6572C26.9829 30.6714 26.2567 29.4476 26.0421 29.0907C25.8275 28.7167 26.0256 28.5127 26.2072 28.3258C26.3722 28.1558 26.5703 27.8839 26.7518 27.6799C26.9334 27.4589 26.9994 27.3059 27.115 27.068C27.2305 26.813 27.181 26.6091 27.082 26.4221C26.9994 26.2351 26.2732 24.3994 25.9761 23.6686C25.679 22.9377 25.3819 23.0397 25.1673 23.0227C24.9528 23.0057 24.7217 23.0057 24.4741 23.0057C24.2265 23.0057 23.8469 23.0907 23.5168 23.4646C23.1867 23.8385 22.2459 24.7394 22.2459 26.5581C22.2459 28.3938 23.5333 30.1445 23.7149 30.3994C23.8964 30.6544 26.2567 34.3938 29.8714 36.0085C30.7297 36.3994 31.4064 36.6204 31.9345 36.7904C32.7928 37.0793 33.5851 37.0283 34.2123 36.9433C34.9055 36.8414 36.3415 36.0425 36.6551 35.1756C36.9522 34.3088 36.9522 33.5609 36.8697 33.4079C36.7541 33.255 36.5065 33.153 36.1434 32.966Z" fill="white"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <div class="mdui-typo mdui-text-color-theme-text mdui-m-t-1">WhatsApp</div>
+                                            </button>
+                                            <button class="mdui-ripple post--share-item" onclick="window.open('https://twitter.com/share?url={{ site.url + page.url }}&text={{ title }}');">
+                                                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid meet" focusable="false" style="width: 50px; height: 50px;">
+                                                    <g>
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path d="M28.486325 59.969298c-6.636404-.569063-11.56302-2.326956-16.321973-5.823932C4.443764 48.472116 0 39.646792 0 29.986934 0 15.11156 10.506778 2.798388 25.274412.36718c6.028107-.992411 12.703853.049265 18.28794 2.85363 13.576275 6.818095 19.7813 22.541053 14.64267 37.103159-3.527955 9.997705-12.789708 17.617785-23.391072 19.244938-2.085625.320112-5.065149.508645-6.327625.400391z" fill="#1DA1F2" fill-rule="nonzero"></path>
+                                                            <path d="M45.089067 17.577067c-.929778.595555-3.064534 1.460977-4.117334 1.460977v.001778C39.7696 17.784 38.077156 17 36.200178 17c-3.645511 0-6.6016 2.956089-6.6016 6.600178 0 .50631.058666 1.000178.16711 1.473778h-.001066c-4.945066-.129778-10.353422-2.608356-13.609244-6.85049-2.001778 3.46489-.269511 7.3184 2.002133 8.72249-.7776.058666-2.209067-.0896-2.882844-.747023-.045156 2.299734 1.060622 5.346845 5.092622 6.452267-.776533.417778-2.151111.297956-2.7488.209067.209778 1.941333 2.928355 4.479289 5.901155 4.479289C22.46009 38.565156 18.4736 40.788089 14 40.080889 17.038222 41.929422 20.5792 43 24.327111 43c10.650667 0 18.921956-8.631822 18.4768-19.280356-.001778-.011733-.001778-.023466-.002844-.036266.001066-.027378.002844-.054756.002844-.0832 0-.033067-.002844-.064356-.003911-.096356.9696-.66311 2.270578-1.836089 3.2-3.37991-.539022.296888-2.156089.891377-3.6608 1.038932.965689-.521244 2.396444-2.228266 2.749867-3.585777" fill="#FFF"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <div class="mdui-typo mdui-text-color-theme-text mdui-m-t-1">Twitter</div>
+                                            </button>
+                                            <button class="mdui-ripple post--share-item" onclick="window.open('https://reddit.com/submit?url={{ site.url + page.url }}&title={{ title }}');">
+                                                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid meet" focusable="false" style="width: 50px; height: 50px;">
+                                                    <g>
+                                                        <g fill-rule="nonzero" fill="none">
+                                                            <path d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z" fill="#FF4500"></path>
+                                                            <path d="M34.1335847 43.9991814c1.6336774-.3831682 2.81654-.7939438 3.9781753-1.3815065 3.6153903-1.8286959 5.8788354-4.8645264 5.8788354-7.8849481 0-.9131088.0196207-.9556355.780668-1.6923265.6040409-.5847092.8404012-.962515 1.044679-1.6698428.2433185-.8425206.2441028-.9826228.0100139-1.7878614-.6566532-2.2588075-3.0054252-3.2764371-5.1075029-2.212882l-.8124519.4110627-.837264-.5151716c-1.6101652-.9907471-4.473974-1.96108051-6.3205111-2.14155924-.5059537-.04945042-1.143803-.1235464-1.4174535-.16465815l-.4975382-.07474783.2136595-1.06953332c.1175125-.5882423.3623778-1.7491883.5441475-2.57987956.181767-.83069153.4095191-1.95749071.5061138-2.50399817.1396137-.78991765.2348596-.99365031.4645331-.99365031.1589005 0 1.2955101.21462853 2.5257988.4769522 1.2302915.26232367 2.2622022.47695193 2.293134.47695193.0309345 0 .1003234.23497925.154203.52217616.1363137.72661143.4902897 1.17780487 1.2134714 1.54674469 1.7356128.8854428 3.6891485-.29431302 3.6891485-2.22790474 0-2.3956262-2.9538443-3.44186625-4.4550019-1.57794377-.2901205.36022881-.4356746.42625561-.7154284.32453216-.1931649-.07023833-1.5202546-.3669593-2.9490951-.65938053-1.8923676-.38728585-2.6686067-.48706487-2.8582979-.36740978-.2896185.1826864-.2522224.047706-1.0501419 3.79055007-.9490696 4.45187338-1.0064011 4.70400786-1.0882029 4.78580828-.0432388.04324046-.729551.14596475-1.5251367.22827402-2.413687.24971784-5.06621906 1.10194849-6.8544721 2.20227189l-.8268564.5087695-.81204644-.4046587c-2.11972653-1.0563058-4.47243958-.0382468-5.1287215 2.2192841-.23408885.8052386-.23330375.9453408.0100166 1.7878614.20427624.7073278.44063816 1.0851336 1.04467744 1.6698428.76105187.736691.78066878.7792177.78066878 1.6923265 0 4.172347 4.28816886 8.1540991 10.01599352 9.3002929 1.8975637.3797217 2.0263168.3894072 4.4515526.3349143 1.5849893-.0356103 2.7274992-.1508298 3.6566327-.3687526zm-6.6864685-3.0300366c-1.3154638-.2961613-2.8032079-.9569232-3.2391341-1.4386156-.34760429-.384099-.198986-.9659493.246724-.9659493.1736296 0 .5801788.1805458.9034441.4012095 2.1828306 1.4900284 7.1085991 1.484628 9.2987021-.0101767.7054363-.4814861 1.2827246-.468194 1.3538857.0311679.0334854.234998-.1164569.4687666-.4771278.7438635-1.7511846 1.3356924-5.2646974 1.8738181-8.086494 1.2385197v-.000019zm-4.01196195-5.9075609c-.81902983-.4443886-1.22403999-1.1532958-1.22477787-2.143771-.000787-1.135302.52653614-1.8699603 1.59778946-2.2257735.76240766-.253232.85344696-.2532238 1.51689516.0001492 1.785415.6818561 2.1507834 2.909296.6724678 4.0996229-.7705198.6204159-1.7299516.7214286-2.56237455.2697724zm11.09588945.0732995c-.7590038-.3947507-1.1832989-.8746601-1.3628596-1.5414995-.3321829-1.2336253.2931784-2.4377233 1.5067529-2.9011953.6634485-.253373.754488-.2533812 1.5168976-.0001492 1.0712525.3558132 1.5986343 1.0904715 1.5977903 2.2257735-.0008141 1.0085002-.4138259 1.7116813-1.2587076 2.1427072-.7599699.3877084-1.3548626.4098285-1.9998736.0743633z" fill="#FDFDFD"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <div class="mdui-typo mdui-text-color-theme-text mdui-m-t-1">Reddit</div>
+                                            </button>
+                                            <button class="mdui-ripple post--share-item" onclick="window.location.href='mailto:?subject={{ title }}&body=Read more about {{ title }} on {{ site.url + page.url }}';">
+                                                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid meet" focusable="false" style="width: 50px; height: 50px;">
+                                                    <g>
+                                                        <g fill-rule="nonzero" fill="none">
+                                                            <path d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z" fill="#888"></path>
+                                                            <path d="M40.531502 19.160814h-22c-1.74 0-2.986 1.2375-3 3v16c0 1.7625 1.26 3 3 3h22c1.74 0 3-1.2375 3-3v-16c0-1.7625-1.26-3-3-3zm0 6l-11 7-11-7v-3l11 7 11-7v3z" fill="#FFF"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <div class="mdui-typo mdui-text-color-theme-text mdui-m-t-1">Email</div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mdui-divider"></div>
+                                <div class="mdui-dialog-actions">
+                                    <button class="mdui-btn mdui-btn-rounded mdui-p-x-3 mdui-text-color-theme-accent mdui-ripple" mdui-dialog-close>CLOSE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdui-divider"></div>
+                <div class="mdui-card-content mdui-typo">
+                    {{ content | safe }}
+                </div>
+            </div>
+            {# {% if comments.enable %}
+                {% include "comment_card.njk" %}
+            {% endif %} #}
+        </div>
+    </div>
+{% endblock %}

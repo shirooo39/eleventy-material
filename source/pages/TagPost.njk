@@ -1,0 +1,29 @@
+---
+eleventyComputed:
+    title: "{{ tag }}"
+    permalink: /tags/{{ tag | slugify }}/
+pagination:
+    data: collections.tagPost
+    size: 1
+    alias: tag
+    filter:
+        - all
+        - nav
+        - post
+        - posts
+        - tagPost
+        - catPost
+    addAllPagesToCollections: true
+permalink: /tags/{{ tag | slugify }}/
+---
+
+{% extends "../layouts/Base.njk" %}
+
+{% set meta_og_url = site.url %}
+{% set meta_og_type = "website" %}
+{% set meta_og_title = site.name %}
+{% set meta_og_description = site.description %}
+
+{% block content %}
+    {% include "PostList.njk" %}
+{% endblock %}
