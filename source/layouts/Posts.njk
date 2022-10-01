@@ -8,6 +8,7 @@ permalink: /posts/{{ title | slugify }}/index.html
 {% set meta_og_title = title %}
 {% set meta_og_description = page.excerpt %}
 {% set meta_og_image = cover %}
+{% set meta_og_image_alt = "Article Cover Image" %}
 {% set meta_og_type = "article" %}
 {% set meta_og_url = site.url + page.url %}
 
@@ -17,11 +18,11 @@ permalink: /posts/{{ title | slugify }}/index.html
             <div class="mdui-card mdui-shadow-4">
                 <div class="mdui-card-media post--cover-placeholder">
                     {% image cover, 1500, "avif", "Article Cover", "post--cover-content" %}
-                    <div class="mdui-card-media-covered">
+                    {# <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">{{ title }}</div>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
                 <div class="mdui-card-header">
                     <div class="mdui-clearfix">
@@ -152,9 +153,17 @@ permalink: /posts/{{ title | slugify }}/index.html
                     {{ content | safe }}
                 </div>
             </div>
-            {# {% if comments.enable %}
-                {% include "comment_card.njk" %}
-            {% endif %} #}
+            {% if disqus.enable %}
+                <div class="mdui-card mdui-shadow-4 mdui-m-t-3">
+                    <div class="mdui-card-content">
+                        {% if disqus.shortname %}
+                            {% include "Disqus.njk" %}
+                        {% else %}
+                            <div class="mdui-typo mdui-typo-title mdui-text-center">Missing disqus.shortname!</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

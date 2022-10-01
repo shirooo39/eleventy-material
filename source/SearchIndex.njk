@@ -1,0 +1,12 @@
+---
+permalink: /searchindex.json
+---
+
+[
+    {% for post in collections.posts %}
+        {
+            "title": "{{ post.data.title }}",
+            "url": "{{ site.url + post.url }}"
+        } {% if not loop.last -%} , {%- endif %}
+    {% endfor %}
+]

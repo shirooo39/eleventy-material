@@ -1,7 +1,7 @@
 <div class="mdui-row">
     {% for post in PostCollection or collections.catPost[cat] or collections.tagPost[tag] %}
         <div class="mdui-col-md-8 mdui-col-offset-md-2">
-            <div class="mdui-card {% if theme.card_hoverable -%} mdui-hoverable {%- else -%} mdui-shadow-4 {%- endif %} mdui-m-b-4">
+            <div class="mdui-card {% if theme.card_hoverable -%} mdui-hoverable {%- else -%} mdui-shadow-4 {%- endif %} {% if not loop.last -%} mdui-m-b-4 {%- endif %}">
                 <div class="mdui-card-media post--cover-placeholder">
                     {% image post.data.cover, 1500, "avif", "Article Cover", "post--cover-content" %}
                     <div class="mdui-card-media-covered">

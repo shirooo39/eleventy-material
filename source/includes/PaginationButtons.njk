@@ -1,27 +1,29 @@
-<div class="mdui-col-xs-1 mdui-col-offset-xs-2 mdui-col-sm-2 mdui-col-offset-sm-3 mdui-m-b-4">
-    {% if pagination.href.previous %}
-        <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-text-color-white-icon mdui-ripple" onclick="window.location.href=('{{ pagination.href.previous }}')">
-            <i class="mdui-icon material-icons">arrow_back</i>
-        </button>
-    {% else %}
-        <button disabled class="mdui-btn mdui-btn-icon mdui-text-color-white-icon-disabled">
-            <i class="mdui-icon material-icons">arrow_back</i>
-        </button> 
-    {% endif %}
-</div>
-<div class="mdui-col-xs-6 mdui-col-sm-2 mdui-text-center">
-    <div class="mdui-typo-subheading mdui-m-t-1">
-        Page {% if pagination.pageNumber == 0 -%} {{ pagination.pageNumber + 1 }} {%- else -%} {{ pagination.pageNumber + 1 }} {%- endif %} of {{ pagination.hrefs.length }}
+<div style="margin-top: 24px;">
+    <div class="mdui-col-xs-1 mdui-col-offset-xs-2 mdui-col-sm-2 mdui-col-offset-sm-3">
+        {% if pagination.href.previous %}
+            <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-text-color-white-icon mdui-ripple" onclick="window.location.href=('{{ pagination.href.previous }}')">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button>
+        {% else %}
+            <button disabled class="mdui-btn mdui-btn-icon mdui-text-color-white-icon-disabled">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button> 
+        {% endif %}
     </div>
-</div>
-<div class="mdui-col-xs-1 mdui-col-sm-2">
-    {% if pagination.href.next %}
-        <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-text-color-white-icon mdui-float-right mdui-ripple" onclick="window.location.href=('{{ pagination.href.next }}')">
-            <i class="mdui-icon material-icons">arrow_forward</i>
-        </button>
-    {% else %}
-        <button disabled class="mdui-btn mdui-btn-icon mdui-text-color-white-icon-disabled mdui-float-right">
-            <i class="mdui-icon material-icons">arrow_forward</i>
-        </button>
-    {% endif %}
+    <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-text-center">
+        <div class="mdui-typo-subheading mdui-m-t-1">
+            Page {% if pagination.pageNumber == 0 -%} {{ pagination.pageNumber + 1 }} {%- else -%} {{ pagination.pageNumber + 1 }} {%- endif %} of {{ pagination.hrefs.length }}
+        </div>
+    </div>
+    <div class="mdui-col-xs-1 mdui-col-sm-2">
+        {% if pagination.href.next %}
+            <button class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-text-color-white-icon mdui-float-right mdui-ripple" onclick="window.location.href=('{{ pagination.href.next }}')">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button>
+        {% else %}
+            <button disabled class="mdui-btn mdui-btn-icon mdui-text-color-white-icon-disabled mdui-float-right">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button>
+        {% endif %}
+    </div>
 </div>

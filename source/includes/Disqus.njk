@@ -1,0 +1,34 @@
+<button id="load-disqus" class="mdui-btn mdui-btn-rounded mdui-center mdui-ripple" data="{{ disqus.shortname }}" onclick="disqus.load();">
+    Load Comments
+</button>
+
+<div id="disqus_thread"></div>
+
+<script>
+    const loadButton = document.querySelector("#load-disqus");
+    const disqusThread = document.querySelector("#disqus_thread");
+    const disqusShortname = loadButton.getAttribute("data");
+    const scriptElement = document.createElement("script");
+
+    var disqus = {
+        load: function disqus() {
+            disqusThread.style.display = "block";
+
+            if (typeof DISQUS !== 'object') {
+                (function () {
+                    scriptElement.async = true;
+                    scriptElement.type = 'text/javascript';
+                    scriptElement.src = `https://${disqusShortname}.disqus.com/embed.js`;
+                    
+                    (document.head || document.body).appendChild(scriptElement);
+                }());
+            } else {
+                DISQUS.reset({
+                    reload: true,
+                });
+            }
+
+            loadButton.remove();
+        }
+    };
+</script>

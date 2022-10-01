@@ -1,0 +1,150 @@
+<h2>MediaInfo</h2>
+
+<script>
+    let tabLabels = [{% for item in tabLabels -%} '{{ item }}', {%- endfor %}];
+    let vidUploaders = [{% for item in vidUploaders -%} '{{ item }}', {%- endfor %}];
+    let vidResolutions = [{% for item in vidResolutions -%} '{{ item }}', {%- endfor %}];
+    let vidEncodings = [{% for item in vidEncodings -%} '{{ item }}', {%- endfor %}];
+    let vidBithDepths = [{% for item in vidBithDepths -%} '{{ item }}', {%- endfor %}];
+    let vidAudios = [{% for item in vidAudios -%} '{{ item }}', {%- endfor %}];
+    let vidSubtitles = [{% for item in vidSubtitles -%} '{{ item }}', {%- endfor %}];
+
+    document.write(`
+        <div class="mdui-panel" mdui-panel>
+        <div class="mdui-panel-item">
+        <div class="mdui-panel-item-header">Click to expand</div>
+        <div class="mdui-panel-item-body">
+        <div class="mdui-table-fluid">
+        <table class="mdui-table">
+        <thead>
+        <tr>
+    `);
+
+    for (const label of tabLabels) {
+        document.write(`<th style="text-align: center;">${label}</th>`);
+    }
+
+    document.write(`
+        </tr>
+        </thead>
+        <tbody>
+    `);
+
+    for (let i = 0; i < vidUploaders.length; i++) {
+        if (vidUploaders.length === 1) {
+            document.write(`
+                <tr>
+                <td style="text-align: center;">${vidUploaders[0]}</td>
+            `);
+        } else {
+            document.write(`
+                <tr>
+                <td style="text-align: center;">${vidUploaders[i]}</td>
+            `);
+        }
+        
+        if (vidResolutions.length === 1) {
+            document.write(`<td style="text-align: center;">${vidResolutions[0]}</td>`);
+        } else {
+            document.write(`<td style="text-align: center;">${vidResolutions[i]}</td>`);
+        }
+        
+        if (vidEncodings.length === 1) {
+            document.write(`<td style="text-align: center;">${vidEncodings[0]}</td>`);
+        } else {
+            document.write(`<td style="text-align: center;">${vidEncodings[i]}</td>`);
+        }
+        
+        if (vidBithDepths.length === 1) {
+            document.write(`<td style="text-align: center;">${vidBithDepths[0]}</td>`);
+        } else {
+            document.write(`<td style="text-align: center;">${vidBithDepths[i]}</td>`);
+        }
+        
+        if (vidAudios.length === 1) {
+            document.write(`<td style="text-align: center;">${vidAudios[0]}</td>`);
+        } else {
+            document.write(`<td style="text-align: center;">${vidAudios[i]}</td>`);
+        }
+        
+        if (vidSubtitles.length === 1) {
+            document.write(`
+                <td style="text-align: center;">${vidSubtitles[0]}</td>
+                </tr>
+            `);
+        } else {
+            document.write(`
+                <td style="text-align: center;">${vidSubtitles[i]}</td>
+                </tr>
+            `);
+        }
+    }
+
+    document.write(`
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+    `);
+</script>
+
+<h2>Download</h2>
+
+<script>
+    let uploaders = [{% for item in vidUploaders -%} '{{ item }}', {%- endfor %}];
+    let downloadUrls = [{% for item in downloadUrls -%} '{{ item }}', {%- endfor %}];
+    let airedEpisodes = {{ airedEpisodes }};
+
+    document.write(`
+        <div class="mdui-panel" mdui-panel>
+        <div class="mdui-panel-item">
+        <div class="mdui-panel-item-header">Click to expand</div>
+        <div class="mdui-panel-item-body">
+    `);
+
+    uploaders.forEach((uploader, i) => {
+        document.write(`
+            <div class="mdui-panel" mdui-panel="{accordion: true}">
+            <div class="mdui-panel-item">
+            <div class="mdui-panel-item-header">Click to expand</div>
+            <div class="mdui-panel-item-body">
+            <div class="mdui-table-fluid">
+            <table class="mdui-table">
+            <thead>
+            <tr>
+            <th style="text-align: center;">${uploader}</th>
+            <th style="text-align: center;">Download</th>
+            </tr>
+            </thead>
+            <tbody>
+        `);
+
+        for (let index = 0; index < airedEpisodes; index++) {
+            document.write(`
+                <tr>
+                <td style="text-align: center;">Episode ${("0" + (index + 1)).slice(-2)}</td>
+                <td style="text-align: center;">
+                    <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple" onclick="window.location.href='${downloadUrls[i]}/Episode ${('0' + (index + 1)).slice(-2)}.mkv';">Download</button>
+                </td>
+                </tr>
+            `);
+        }
+
+        document.write(`
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+            </div>
+        `);
+    })
+
+    document.write(`
+        </div>
+        </div>
+        </div>
+    `);
+</script>

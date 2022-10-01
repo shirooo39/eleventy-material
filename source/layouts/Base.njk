@@ -11,6 +11,7 @@
         <meta property="og:title" content="{{ meta_og_title }}" />
         <meta property="og:description" content="{{ meta_og_description }}" />
         {% if meta_og_image -%} <meta property="og:image" content="{{ meta_og_image }}" /> {%- endif %}
+        {% if meta_og_image_alt -%} <meta property="og:image:alt" content="{{ meta_og_image_alt }}" /> {%- endif %}
         <meta property="og:locale" content="{{ site.locale }}" />
         <meta property="og:type" content="{{ meta_og_type }}" />
         <meta property="og:url" content="{{ meta_og_url }}" />
@@ -23,8 +24,9 @@
         <link rel="manifest" href="/manifest.webmanifest">
         <link rel="stylesheet" href="/assets/css/mdui.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
+        {# <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> #}
     </head>
-    <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-dark">
+    <body class="mdui-theme-primary-red mdui-theme-accent-red mdui-theme-layout-dark">
         <header>
             {% include "AppBar.njk" %}
         </header>

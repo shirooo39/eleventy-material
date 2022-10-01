@@ -8,6 +8,7 @@
         <button disabled class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
             <i class="mdui-icon material-icons">search</i>
         </button>
+        {# {% include "TypeaheadSearch.njk" %} #}
     </div>
 </div>
 <div id="appbar-drawer" class="mdui-drawer mdui-drawer-full-height mdui-drawer-close">
@@ -30,7 +31,7 @@
                 <div class="mdui-list-item-content mdui-text-color-theme-secondary">{{ navint.label }}</div>
             </div>
         {%- endfor %}
-        <div class="mdui-divider"></div>
+        {# <div class="mdui-divider"></div> #}
         {%- for navext in navigation.external %}
             <div class="mdui-list-item mdui-ripple" onclick="window.open('{{ navext.url }}');" mdui-drawer-close="{ target: '#appbar-drawer' }">
                 <div class="mdui-list-item-content mdui-text-color-theme-secondary" style="margin-left: 38px;">
