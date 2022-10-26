@@ -42,8 +42,6 @@ You might also want to change something in the `.manifest` file.
 To write an article/post, put them inside the /posts/ folder.
 
 # TO DO (or not to do... no promise ✌️😁✌️)
-- Add search functionality 🫢 (help needed)
-- Add Disqus
 - Add workbox for generating the service-worker (if it's ever needed...)
 - Add a bit of an animation .onload()?
 - Add Web Share API to post sharing button
